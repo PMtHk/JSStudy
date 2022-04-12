@@ -1,8 +1,7 @@
 # JavaScript
 ## JavaScript 기초 공부를 위한 개인 페이지<br/>
 참고한 유튜브: 코딩앙마님의 자바스크립트 중급 강좌 : 140분 완성<br/>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4_WLS9Lj6n4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br/>
-<br/>
+[![자바스크립트 중급 강좌 : 140분 완성](https://www.youtube.com/vi/4_WLS9Lj6n4/0.jpg)](https://www.youtube.com/watch?v=4_WLS9Lj6n4)
 
 ## **1. Variables(변수)**  
 `let` 과 `const` ES6 부터 생긴 문법이다. 그 이전 JS에서는 `var` 사용.  
