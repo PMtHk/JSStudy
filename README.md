@@ -114,7 +114,136 @@ let user5 = new User('Na', 30);
 user5.sayName();    // 출력 : Na
 ~~~
 
-## **3. Object Method, Computed Property**  
+## **3. Object-Method, Computed Property**  
+
+__Computed property__
+> ~~~javascript
+> let a = 'age';
+>
+> const user  = {
+>     name : 'PMtHk';
+>     age : 25,   // age 대신 [a] 가능 -> computed property
+> }  
+> ~~~  
+식 자체를 넣는 것도 가능하다.
+<br/>
+
+__Object-method__<br/>
+<details>
+<summary> Object.assign() : 객체 복제 </summary>
+<div markdown="1">
+
+> 
+> ~~~javascript
+> const user = {
+>     name : 'PMtHk',
+>     age : 25
+> }
+> 
+> const cloneUser = user;
+> ~~~
+> 위와 같이 하면, 복제가 되는 것이 아닌 객체가 대한 참조값이 할당된다.  
+> 하나의 객체를 두 변수가 접근하고 있는 것이다.
+> 
+> 따라서, 아래와 같이 해야한다.
+> ~~~javascript
+> const newUser = Object.assign({}, user);
+> /* {} + { name : 'PMtHk', age : 25 } = 
+>           {
+>               name : 'PMtHk',
+>               age : 25,
+>           }
+> */
+> ~~~
+> 빈 객체를 생성한 후 user 객체가 병합된다.  
+> Object.assign(param1, param2) 에서 param1의 객체에 param2의 객체를 병합하는 구조이다.  
+> 병합시 같은 키값이 있다면, 덮어쓰기 된다. (param2 의 값으로)  
+> 두개 이상의 객체도 병합할 수 있다.  
+> 
+
+</div>
+</details>
+  
+<details>
+<summary> Object.keys() : 키 배열 반환 </summary>
+<div markdown="1">
+
+> ~~~javascript
+> const user = {
+>      name : 'PMtHk',
+>      age : 25,
+>      gender : 'male',
+> }
+>
+> Object.keys(user); 
+> // [ "name", "age", "gender" ]
+> ~~~
+<br/>
+</div>
+</details>
+
+<details>
+<summary> Object.values() : 값 배열 반환 </summary>
+<div markdown="1">
+
+> ~~~javascript
+> const user = {
+>      name : 'PMtHk',
+>      age : 25,
+>      gender : 'male',
+> }
+>
+> Object.keys(user); 
+> // [ "PMtHk", "25", "male" ]
+> ~~~
+<br/>
+</div>
+</details>
+
+<details>
+<summary> Object.entries() : 키/값 배열 반환 </summary>
+<div markdown="1">
+
+> ~~~javascript
+> const user = {
+>      name : 'PMtHk',
+>      age : 25,
+>      gender : 'male',
+> }
+>
+> Object.keys(user); 
+> /* [ ["name", "PMtHk" ],
+>      ["age", "25" ], 
+>      ["gender", "male" ] ] */
+> ~~~
+<br/>
+</div>
+</details>
+
+<details>
+<summary> Object.fromEntries(): 키/값 배열을 객체로 만들기 </summary>
+<div markdown="1">
+
+> ~~~javascript
+> const arr = 
+> [ 
+>     ["name", "PMtHk" ],
+>     ["age", "25" ], 
+>     ["gender", "male" ]
+> ]
+> 
+> Object.fromEntries(arr);
+> /* 
+> {
+>      name : 'PMtHk',
+>      age : 25,
+>      gender : 'male',
+>  }   와 같은 객체를 생성한다.   
+> */
+<br/>
+</div>
+</details>
+
 
 
 
