@@ -123,11 +123,11 @@ __Computed property__
 > let a = 'age';
 >
 > const user  = {
->     name : 'PMtHk';
+>     name : 'PMtHk',
 >     age : 25,   // age 대신 [a] 가능 -> computed property
 > }  
 > ~~~  
-식 자체를 넣는 것도 가능하다.
+> 식 자체를 넣는 것도 가능하다.
 <br/>
 
 __Object-method__<br/>
