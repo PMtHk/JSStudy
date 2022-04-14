@@ -331,7 +331,7 @@ __Object-method__<br/>
 > id.description; // "id 입니다." 
 > ~~~ 
 
-심볼을 완전히 숨길 수 있는 방법은 없다!
+    심볼을 완전히 숨길 수 있는 방법은 없다!
 > ~~~javascript
 > const id = Symbol('id');
 >
