@@ -331,7 +331,7 @@ __Object-method__<br/>
 > id.description; // "id 입니다." 
 > ~~~ 
 
-    심볼을 완전히 숨길 수 있는 방법은 없다!
+**심볼을 완전히 숨길 수 있는 방법은 없다!**
 > ~~~javascript
 > const id = Symbol('id');
 >
@@ -344,8 +344,8 @@ __Object-method__<br/>
 > Object.getOwnPropertySymbols(user); // -> [Symbol(id)]
 > Reflect.ownKeys(user); // -> ["name", "age", Symbol(id)]
 > ~~~  
-하지만, 대부분의 라이브러리나 내장함수들은 이런 메소드들을 사용하지 않는다.  
-걱정말고, 유일한 Property를 추가하고 싶을 때, `Symbol`을 사용하자!
+> 하지만, 대부분의 라이브러리나 내장함수들은 이런 메소드들을 사용하지 않는다.  
+> 걱정말고, 유일한 Property를 추가하고 싶을 때, `Symbol` 을 사용하자!
 
 
 
