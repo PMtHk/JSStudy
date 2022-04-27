@@ -347,6 +347,181 @@ __Object-method__<br/>
 > 하지만, 대부분의 라이브러리나 내장함수들은 이런 메소드들을 사용하지 않는다.  
 > 걱정말고, 유일한 Property를 추가하고 싶을 때, `Symbol` 을 사용하자!
 
+</br>
+
+## **5. Number, Math**  
+`toString()` : 10진수 수 -> 2진수/16진수 (String형태로)
+~~~javascript
+let num1 = 10;
+
+num1.toString();     // "10"
+num1.toString(2);    // "1010"
+
+let num2 = 255;
+
+num2.toString(16);   // "ff"  
+~~~
+
+`Math` 수학과 관련된 property와 method를 가진 내장객체이다.  
+- `Math.ceil()` : 올림
+>  ~~~javascript
+> let num1 = 5.1;
+> let num2 = 5.7;
+> 
+> Math.ceil(num1);  // 6
+> Math.ceil(num2);  // 6
+> ~~~
+
+- `Math.floor()` : 내림
+>  ~~~javascript
+> let num1 = 5.1;
+> let num2 = 5.7;
+> 
+> Math.floor(num1);  // 5
+> Math.floor(num2);  // 5
+> ~~~
+
+- `Math.round()` : 반올림
+>  ~~~javascript
+> let num1 = 5.1;
+> let num2 = 5.7;
+> 
+> Math.round(num1);  // 5
+> Math.round(num2);  // 6
+> ~~~
+
+- `toFixed()` : 소수점 자릿수 
+>  ~~~javascript
+> let userRate = 30.1234;
+> userRate.toFixed(2); // "30.12"
+> userRate.toFixed(0); // "30"
+> userRate.toFixed(6); // "30.123400"
+> ~~~
+> 문자열을 반환하니 주의하자! `Number()`로 감싸서 다시 수로 바꾸자!
+
+- `isNaN()`
+> `NaN`인지 아닌지 판단해준다. 이 방법 말고는 `NaN`인지 판별할 수 있는 방법은 없다.
+> ~~~javascript
+> let x = Number('x');  // NaN
+>
+> x == NaN    // false
+> x === NaN   // false
+> NaN == NaN  // false 자기자신과도 똑같지 않다고 판단한다...
+> 
+> isNaN(x)    // true
+> isNaN(3)    // false
+> ~~~
+
+- `parseInt()`
+> 문자열을 숫자로 변환해준다. `Number()`와 다른 점은 문자가 섞여있을 때, `Number()`는 `NaN`을 반환하지만, `parseInt()`는 읽을 수 있는 부분까지 읽고 문자를 만나면 거기까지를 숫자로 반환한다.
+> ~~~javascript
+> let margin = '10px';
+> 
+> parseInt(margin);   // 10
+> Number(margin);     // NaN
+> 
+> let redColor = 'f3';
+> parseInt(redColor);   //NaN
+> ~~~
+> 숫자로 시작하지 않으면 `NaN`을 반환한다.  
+> `parseInt()`는 두 번째 인수를 받아서 진수를 정할 수 있다.
+> ~~~javascript
+> let redColor = 'f3';
+> parseInt(redColor);   // NaN
+> parseInt(redColor, 16); // 243
+> parseInt('11', 2)     // 3
+> ~~~
+
+- `parseFloat()`
+> `parseInt()`와 동일하게 동작하지만, 소수점 이하를 무시하고 정수부만 반환하는 `parseInt()`와 달리, 부동소수점을 반환한다.
+> ~~~javascript
+> let padding = '18.5%';
+> parseInt(padding);    // 18
+> parseFloat(padding);  // 18.5
+> ~~~
+
+- `Math.random()` : 0 ~ 1 사이 무작위 숫자 생성
+> 1 ~ 100 사이 임의의 숫자를 뽑고 싶다면
+> ~~~javascript
+> Math.floor(Math.random()*100)+1
+> ~~~
+
+- `Math.max()` : 최대값 Maximum
+- `Math.min()` : 최소값 Minimum
+- `Math.abs()` : 절대값 Absolute
+- `Math.pow()` : 거듭제곱값 Power
+- `Math.sqrt()` : 제곱근  SquareRoot
+
+<br/>  
+
+## **6. 문자열 메소드(String Method)**  
+- 큰 따옴표, 작은 따옴표, 백틱
+> ~~~javascript
+> let html = '<div class="box_title">제목 영역</div>';
+> // html은 큰 따옴표가 들어가는 내용이 있으므로 작은 따옴표로 감싸는게 Good.
+> let desc = "It's 3 o'clock.";
+> // 영어 문장은 작은 따옴표가 종종 들어가니 큰 따옴표로 감싸는게 Good.
+>
+> let name = 'Mike';
+> let result = `My name is ${name}.`;
+> let add = `2 더하기 3dms ${2+3}입니다.`
+> //백틱은 ${ } 형태로 변수, 표현식 이용 가능
+>
+> let desc2 = `오늘은 맑고 
+> 화창한 날씨가 계속되지만
+> 내일은 비가 올 예정이다.`
+> // 와 같이 여러줄로도 쓸 수 있지만
+> // 따옴표 이용시 \n 개행문자를 써야한다. 그냥 줄바꿈시 에러발생!
+> ~~~
+> 문자열도 배열처럼 특정위치에 접근이 가능하지만, 특정위치만 수정할 수 없다.
+- `toUpperCase()/toLowerCase()`로 대소문자 변경 가능.
+- `str.indexOf(text)`
+> ~~~javascript
+> let desc = "Hi guys. Nice to meet you.";
+> desc.indexOf('to');   // 14
+> desc.indecOf('man');  // -1 찾는문자 없으면 -1 반환.
+> ~~~
+> 찾는 문자가 여러개라도 첫 번째 위치만 반환한다.
+
+- `str.slice(n, m)`
+> n : 시작점  
+> m : 없으면 문자열 끝까지, 양수면 그 숫자까지(포함X), 음수면 끝에서부터 센다!
+> 
+> ~~~javascript
+> let desc = "abcdefg";
+>
+> desc.slice(2)       // "cdefg"
+> desc.slice(0, 5)    // "abcde"
+> desc.slice(2, -2)   // "cde"
+> ~~~
+
+- `str.substring(n, m)`
+> n 과 m 사이 문자열 반환한다. n, m 의 위치 바꿔도 동작한디. 음수는 0으로 인식한다.
+> ~~~javascript
+> let desc = "abcdefg";
+>
+> desc.substring(2, 5);   // "cde"
+> desc.substring(5, 2);   // "cde"
+> ~~~
+
+- `str.substr(n, m)`
+> `.substr(n, m)`과 동작방식은 비슷하나, n ~ m 이 아닌, n 부터 m 개를 가져온다.  
+
+- `str.trim()`: 앞 뒤 공백 제거
+> ~~~javascript
+> let desc = "   coding         ";
+> desc.trim();   // "coding"
+> ~~~
+> 보통 사용자로부터 무언가를 입력받을 때 사용한다.
+
+- `str.repeat(n)`: n번 반복
+> ~~~javascript
+> let hello = "hello!";
+> hello.repeat(3);  // "hello!hello!hello!"
+> ~~~
+
+- 문자열 비교
+> 정수처럼 크기비교가 가능하다.
 
 
 
