@@ -522,9 +522,97 @@ num2.toString(16);   // "ff"
 
 - 문자열 비교
 > 정수처럼 크기비교가 가능하다.
+    
+</br>
 
+## **7. 배열 메소드(Array Methods)** 
+- `arr.splice(n, m)` : 특정 요소 지움(n번째 요소부터, m까지 지운다.)
+> ~~~javascript
+> let arr = [0,1,2,3,4,5];
+> arr.splice(1,2);
+> // arr = [1,4,5]
+> ~~~
+- `arr.splice(n,m,x)` : 특정 요소 지우고 추가!
+> ~~~javascript
+> let arr = [0,1,2,3,4,5];
+> arr.splice(1,3,100,200);
+> // arr = [1,100,200,5]
+> ~~~
+> m이 0이면 삭제하지 않고 n번째 부터 추가한다.  
+> `arr.splice()`는 삭제된 요소를 반환한다.
 
+- `arr.slice(n, m)` : n부터 m까지 반환한다.
+> ~~~javascript
+> let arr = [1,2,3,4,5];
+> arr.slice(1,4); // [2,3,4]
+> ~~~
+> 괄호 안에 아무 인자도 없으면 해당 배열을 복사한다.
 
+- `arr.concat(arr2, arr3 ...)` 합쳐서 새배열을 반환한다.
+> ~~~javascript
+> let arr = [1,2];
+> arr.concat([3,4]); // [1,2,3,4]
+> arr.concat([3,4], [5,6]); // [1,2,3,4,5,6]
+> arr.concat([3,4],5,6); // [1,2,3,4,5,6]
+
+- `arr.forEach(fn)` : 배열 반복
+> ~~~javascript
+> let users = ['Mike', 'Tom', 'Jane'];
+> users.forEach((item, index, arr) => {
+>  // ..
+> });
+> ~~~
+
+- `arr.indexOf / arr.lastIndexOf`
+> 문자열의 `indexOf`와 사용법은 같다. 발견하면 해당 요소의 인덱스를 반환하고 없으면 '-1' 을 반환한다.
+> ~~~javascript
+> let arr = [1,2,3,4,5,1,2,3];
+> arr.indexOf(3); // 2
+> arr.indexOf(3,4); // 7
+> arr.lastindexOf(3); // 7
+> ~~~
+> 위 처럼 인자가 두개인 경우, 두 번째 인수는 시작위치를 의미한다. (인덱스 4부터 3을 찾기)
+> `lastIndexOf()`는 뒤에서 부터 찾아서 인덱스 값을 반환한다.
+
+- `arr.includes()` : 인덱스 필요없이 포함하는지 확인 (true/false)
+
+- `arr.find(fn)/ arr.findindex(fn)`
+> 보다 복잡한 연산이 가능하도록 함수를 연결할 수 있다.  
+> 첫 번째 true 값만 반환하고 끝난다. 없으면 undefined를 반환하니 주의하자.
+
+- `arr.filter(fn)` : 만족하는 모든 요소를 배열로 반환한다.
+
+- `arr.reverse()` : 역순으로 재정렬한다.
+- `arr.map(fn)` : 함수를 받아 특정 기능을 시행하고 새로운 배열을 반환한다.
+
+- `join() / split()`
+> `join()`의 경우, 인자로 아무것도 전달되지 않으면 Comma(,)로 연결한다.
+> `split()`의 경우, 빈 문자열("")을 입력하면 각 글자별로(스페이스 포함) 출력한다.
+
+- `Array.isArray()`
+> 배열인지 아닌지 확인하려면 `isArray` 를 이용해야 한다.
+> 자바스크립트에서 배열은 객체형에 속하므로, `typeof` 이용시 객체라고 알려준다.
+
+- `arr.sort() / arr.reduce()`
+> `arr.sort()`는 배열 재정렬한다. 배열 자체가 변경되니 주의하자.
+> `.sort()`는 정렬시 요소를 문자열로 취급함에 주의하자.
+> -> 보통은 Lodash와 같은 라이브러리를 이용한다.
+>
+> `reduce()`는 인수로 함수를 받는다.  
+> for 문과 비슷하게 동작한다. 배열의 요소를 돌며 원하는 작업을 하고 최종값을 반환한다. 
+> ~~~javascript
+> let arr = [1,2,3,4,5];
+> const result = arr.reduce((prev, cur) => {
+>    return prev + cur;
+> }, 0); // -> 0 은 초기값
+> console.log(result); // 15
+> // (누적 계산값, 현재값) => {return 계산값};
+> ~~~
+> `reduceRight()` 는 배열 우측부터 동일하게 수행한다.
+
+</br>
+
+## **8. 구조 분해 할당(Destructuring Assignment)** 
 
 
 
