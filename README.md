@@ -613,6 +613,163 @@ num2.toString(16);   // "ff"
 </br>
 
 ## **8. 구조 분해 할당(Destructuring Assignment)** 
+구조 분행 할당 구문은 배열이나 객체의 속성을 분해해서, 그 값을 변수에 담을 수 있게 하는 표현식
+
+> **배열 구조 분해**
+> ~~~javascript
+> let [x, y] = [1, 2];
+> console.log(x); // 1
+> console.log(y); // 2
+> 
+> let str = "Mike-Tom-Jane";
+> let [user1, user2, user3] = str.split('-');
+> console.log(user1); //  'Mike'
+> console.log(user2); //  'Tom'
+> console.log(user3); //  'Jane'
+> ~~~
+> 지난 시간 배운 `.split()`을 이용하면, 위와 같이 사용할 수 있다.
+>
+> 만약 해당하는 값이 없다면?
+> ~~~javascript
+> let [a, b, c] = [1, 2];
+> // c 에 undefined가 할당된다.
+> let [ a=3, b=4, x=5 ] = [1, 2];
+> ~~~
+> 따라서 위와 같이 기본 값을 설정할 수 있다.
+> 
+> 일부 반환값을 무시할 수도 있는데
+> ~~~javascript
+> let [user1, , user2] = ["Mike", "Tom", "Jane", "Tony"];
+> // user1 = "Mike", user2 = "Jane"
+> ~~~
+> 위와 같이 공백을 이용해서 무시할 수 있다.
+> 
+> 다른 언어들에서 두 변수의 값을 서로 바꾸려면, 임시변수를 생성해야 했는데
+> 배열 구조 분해를 이용하면,  
+> ~~~javascript
+> let a = 1;
+> let b = 2;
+> 
+> [a,b] = [b,a];
+> ~~~
+> 와 같이 쉽게 두 값을 바꿀 수 있다.
+
+<br/>
+
+> **객체 구조 분해**
+> ~~~javascript
+> let user = {name: 'Mike', age: 30};
+> let {name, age} = user;
+> // 위의 코드는 아래와 같은 의미이다.
+> let name = user.name;
+> let age = user.age;
+> // 따라서 출력하면 아래와 같다.
+> console.log(name);  // 'Mike'
+> console.log(age);   // 30
+> ~~~
+> 배열 구조 분해와 다른 점은, 객체의 경우 순서를 신경쓰지 않아도 된다는 점이다.  
+> (property key 값을 꼭 사용해야하는 것도 아니다.)
+>
+> 새로운 변수의 이름으로 할당하고자 할때는
+> ~~~javascript
+> let user = {name: 'Mike', age: 30};
+> let {name: userName, age: userAge} = user;
+> console.log(userName);  // 'Mike'
+> console.log(userAge);   // 30
+> ~~~
+>
+> 배열과 마찬가지로 객체 구조 분해에도 기본값을 할당할 수 있다.
+> ~~~javascript
+> let user = {name: 'Mike', age: 30};
+> let {name, age, gender} = user; // 이때 gender는 undefined
+>
+> let {name, age, gender = 'male'} = user;
+> ~~~
+
+</br>
+
+## **9. 나머지 매개변수(Rest Parameters)** 
+**나머지 매개변수 `...`**
+
+~~~javascript
+function showName(name){
+  console.log(name);
+}
+showName('Mike');   // 'Mike'
+~~~
+과 같이 일반적으로 name에 'Mike'가 들어왔으니, 콘솔에 'Mike'를 찍어준다.  
+
+하지만 인수로 두개가 들어가면 어떻게 될까?  
+에러는 발생하지 않고 그대로 'Mike' 가 찍히게 된다. Why?  
+Javascript에서 함수에 넘겨주는 인수의 개수의 제한이 없다.  
+아무것도 전달하지 않아도 에러는 발생하지 않는다. 다만 undefined가 나오게 된다.  
+
+함수의 인수를 얻는 방법에 두가지가 있다.
+- `arguments` 로 접근하는 방법
+- `...` 나머지 매개 변수를 사용하는 방법
+
+과거에는 `arguments`만 사용할 수 있었지만, 최근에는 여러 장점이 있는 나머지 매개변수 `...` 를 사용하는 추세이다. 화살표 함수에는 `arguments`가 없다.
+
+**`arguments`란**
+> 함수로 넘어온 모든 인수에 접근할 수 있다.  
+> 함수내에서 이용 가능한 지역 변수이다.  
+> length와 index가 있기 때문에 배열이라 생각할 수 있지만,  
+> 사실 Array 형태의 객체이다.  
+> 따라서, length와 index는 가지고 있지만, 배열의 내장 메소드는 없다.  
+> ~~~javascript
+> function showName(name) {
+>   console.log(arguments.length);
+>   console.log(arguments[0]);
+>   console.log(argumnets[1]); 
+> }
+> showName('Mike', 'Tom');
+> //  2
+> //  'Mike'
+> //  'Tom'
+> ~~~
+
+ES6를 사용할 수 있는 환경이면, 가급적 나머지 매개변수 `...` 구문의 사용을 권장한다.
+
+**나머지 매개변수(`...`)란**
+> 정해지지 않은 개수의 인수를 배열로 나타낼 수 있게 한다.
+> ~~~javascript
+> function showName(...name){ // names란 배열을 만들어
+>   console.log(names);       // 전달된 인수를 names안에 넣는다.
+> }
+> showName();               // []
+> showName('Mike');         // ['Mike']
+> showName('Mike', 'Tom');  // ['Mike', 'Tom']
+> ~~~
+> 배열과 다르게 배열 메소드들도 사용이 가능해진다.  
+> 항상 나머지 매개변수는 제일 마지막에 위치해야 한다.
+
+
+</br>
+
+## **10. 전개 구문(Spread Syntax)** 
+~~~javascript
+let arr1 = [1,2,3];
+let arr2 = [4,5,6];
+
+let result = [...arr1, ...arr2];
+console.log(result); // [1,2,3,4,5,6]
+~~~
+`...arr1`은 [1,2,3]을 풀어서 쓴것이다.  
+배열을 풀어 다시 배열로 묶는 것은 번거롭지만, 전개구문을 이용하면 빠르게 할 수 있다.  
+
+객체에서도 가능하다.
+~~~javascript
+let arr = [1,2,3];
+let arr2 = [...arr];  // [1,2,3]
+
+let user = {name: 'Mike', age:30};
+let user2 = {...user};
+
+user2.name = "Tom";
+
+console.log(user.name);     // "Mike"
+console.log(user2.name);    // "Tom"
+~~~
 
 
 

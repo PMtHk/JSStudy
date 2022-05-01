@@ -28,8 +28,8 @@ console.log(arr2);
 // 인수로 함수를 받음
 // (누적 계산값, 현재값) => { return 계산값 };
 
-// 배열의 모든수 합치기
-
+// 배열의 모든수 합치기  
+    
 let arr3 = [1,2,3,4,5];
 
 const result1 = arr3.reduce((prev, cur) => {
